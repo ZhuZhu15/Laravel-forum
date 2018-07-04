@@ -23,7 +23,11 @@ class User extends Authenticatable
 
     public function themes()
     {
-        return $this->hasMany(Theme::class)->latest();
+        return $this->hasMany(Theme::class);
+    }
+    public function comments()
+    {
+      return $this->HasMany('App\Comment');
     }
 
 }

@@ -1,4 +1,5 @@
 <?php
+use app\Theme;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,11 @@
 Route::get('/', 'HomeController@index');
 Route::get('channels/create', 'ChannelsController@create')->middleware('auth');
 Route::post('channels', 'ChannelsController@store')->middleware('auth');
-Route::get('channels/{name}', 'ChannelsController@show');
+Route::get('channels/{channel}', 'ChannelsController@show');
 Route::get('channels/{name}/createtheme', 'ThemesController@create')->middleware('auth');
 Route::post('channels/{name}/themes', 'ThemesController@store')->middleware('auth');
 Route::get('profiles/{user}', 'ProfilesController@show')->name('profile');
+Route::get('channels/{channel}/{theme}', 'ThemesController@show')->name('theme');
+
 Auth::routes();
 

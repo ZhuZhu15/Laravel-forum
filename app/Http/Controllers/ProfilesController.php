@@ -9,9 +9,11 @@ class ProfilesController extends Controller
 
     public function show(User $user)
     {
+        
         return view('profiles.show', [
             'profileUser' => $user,
-            'themes' => $user->themes()->paginate(3)
+            'themes' => $user->themes()->paginate(3),
+
         ]);
     }
 } 

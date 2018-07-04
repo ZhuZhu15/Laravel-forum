@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Laravel\Dusk\DuskServiceProvider;
 use App\Channel;
 use App\Theme;
 
@@ -29,7 +30,8 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
-        //
+{
+   
     }
 }
+

@@ -16,7 +16,7 @@
                         <div class="panel-heading">
                             <div class="level">
                                <span class="flex">
-                                    <a href="">{{ $theme->name }}</a> опубликовал:                                   
+                                    <a href="{{route('theme',[$theme->channel->name, $theme->id])}}">{{ $theme->name }}</a> опубликовал:                                   
                                </span>
                                 <span>{{ $theme->created_at->format('d-m-Y | H:i:s') }}</span>
                             </div>

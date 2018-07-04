@@ -8,10 +8,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <h4>Темы Рубрики <b>{{$name}}</b></h4>
+                        <h4>Темы Рубрики <b>{{$channel->name}}</b></h4>
                     </div>
                     <div class="float-right">
-                        <a href="{{$name}}/createtheme" class="btn btn-success">Создать тему</a>
+                        <a href="{{$channel->name}}/createtheme" class="btn btn-success">Создать тему</a>
                     </div> 
             
             </div>
@@ -23,7 +23,7 @@
                         </div>
                     @endif
                    @foreach ($themes as $theme) 
-                    {{$theme->name}} <br>
+                    <a href="{{route('theme',[$channel->name, $theme->id])}}">{{$theme->name}}</a> <br>
                      @endforeach
                    
                 </div>

@@ -31,10 +31,9 @@ class ChannelsController extends Controller
 
         return view('home');
     }
-    public function show($name)
+    public function show(Channel $channel)
     {
-        $id = Channel::where('name', $name)->value('id');
-        $themes = Channel::find($id)->themes;
-        return view('channels.show', ['themes' => $themes, 'name' => $name]);
+        $themes = Channel::find($channel->id)->themes;
+        return view('channels.show', ['themes' => $themes, 'channel' => $channel]);
     }
 } 

@@ -10,11 +10,11 @@ class Channel extends Model
         
     public function getRouteKeyName()
     {
-        return 'body';
+        return 'name';
     }
 
     public function themes()
     {
-        return $this->hasMany('App\Theme', 'channel_id');
+        return $this->hasMany('App\Theme');
     }
 }

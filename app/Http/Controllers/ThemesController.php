@@ -28,4 +28,9 @@ class ThemesController extends Controller
         ]);
        return redirect('/channels/'.$name);
     }
+    public function show(Channel $channel,Theme $theme) {
+        echo $channel->name;
+        echo "<br>";
+        echo $theme->id;
+    }
 }
