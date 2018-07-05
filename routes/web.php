@@ -1,6 +1,7 @@
 <?php
 use app\Theme;
 use app\Comment;
+use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,14 +22,9 @@ Route::post('channels/{name}/themes', 'ThemesController@store')->middleware('aut
 Route::get('profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::get('channels/{channel}/{theme}', 'ThemesController@show')->name('theme');
 Route::get('/test', function(){
-  $comments = Theme::find(45)->comments;
-  foreach ($comments as $comment){
-       echo $comment->body;
-       echo $comment->owner->name;   
-  }
-  $user = Comment::find(1)->owner;
-  echo $user->name;
+   return view('avatar');
 });
+Route::post('profiles/{user}/avatar', 'UserAvatarController@avatar')->name('avatar')->middleware('auth');
 Route::post('/channels/{channel}/{theme}/createcomment', 'CommentsController@store')->name('create-comment')->middleware('auth');
 
 Auth::routes();

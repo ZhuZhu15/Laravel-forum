@@ -17,11 +17,15 @@
             </div>
                 
                 <div class="card-body">
-                    @foreach ($comments as $comment) 
-                    <b>{{$comment->owner->name}}</b> написал:<br/>
+                @if (count($comments)>0)
+                    @foreach ($comments as $comment)
+                    <img src="../../storage/{{$comment->owner->img}}" style="max-width: 35px;"/> 
+                    <a href="{{route('profile', $comment->owner->name)}}"><b>{{$comment->owner->name}}</b></a> написал:<br/>
                     {{$comment->body}}<br/>
                     @endforeach
                    {{ $comments->links() }}
+                @else комментариев пока нет
+                @endif   
                 </div>
             </div>
             
@@ -46,6 +50,8 @@
                                 </ul>
                             @endif
                         </form>
+                        @else
+                        Чтобы оставить комментарий залогиньтесь
             @endauth
         </div>
     </div>

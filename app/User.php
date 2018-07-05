@@ -29,5 +29,6 @@ class User extends Authenticatable
     {
       return $this->HasMany('App\Comment');
     }
+    
 
 }
