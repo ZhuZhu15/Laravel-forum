@@ -10,10 +10,11 @@
                     <div class="float-left">
                         <h4>Темы Рубрики <b>{{$channel->name}}</b></h4>
                     </div>
+                    @auth
                     <div class="float-right">
                         <a href="{{$channel->name}}/createtheme" class="btn btn-success">Создать тему</a>
                     </div> 
-            
+                    @endauth
             </div>
                 
                 <div class="card-body">

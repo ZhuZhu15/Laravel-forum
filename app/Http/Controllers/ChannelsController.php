@@ -33,7 +33,7 @@ class ChannelsController extends Controller
     }
     public function show(Channel $channel)
     {
-        $themes = Channel::find($channel->id)->themes;
+        $themes = $channel->themes;
         return view('channels.show', ['themes' => $themes, 'channel' => $channel]);
     }
 } 

@@ -8,11 +8,12 @@ class Comment extends Model
 {
     public function theme()
     {
-      return $this->belongsTo('App\Theme');
+      return $this->belongsTo('App\Theme', 'theme_id');
     }
 
-    public function user()
+    public function owner()
     {
-      return $this->belongTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
+    protected $guarded = [];
 }

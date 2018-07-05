@@ -15,6 +15,5 @@ class Theme extends Model
     {
       return $this->HasMany('App\Comment');
     }
-
     protected $guarded = [];
 }

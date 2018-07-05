@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Theme;
 use App\Channel;
+use App\Comment;
 class ThemesController extends Controller
 {
 
@@ -28,9 +29,10 @@ class ThemesController extends Controller
         ]);
        return redirect('/channels/'.$name);
     }
-    public function show(Channel $channel,Theme $theme) {
-        echo $channel->name;
-        echo "<br>";
-        echo $theme->id;
+    public function show(Channel $channel, Theme $theme) {
+        $comments = $theme->comments()->paginate(5);
+        return view('themes.show', ['channel' => $channel,
+         'theme'=> $theme,
+         'comments' => $comments,]);
     }
 }
