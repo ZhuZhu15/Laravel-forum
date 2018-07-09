@@ -12,21 +12,22 @@
                    <img src="../storage/{{$profileUser->img}}"/>
                    <br/>
                    @auth
+                   @if (auth()->user()->id == $profileUser->id)
                    <button class="btn btn-dark avatar-button" style="margin-top: 10px;">Поменять аватарку</button>
                    <div class="avatar-change" style="display: none;">
                    <form method="POST" action="{{route('avatar',[$profileUser->name])}}" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    
                     <input type="file" id="avatar" name="avatar" accept="image/*"/>
-                    
                     <br>
                     <button type="submit" class="btn btn-danger">Отправить</button>
                     </form>
                 </div>
                 </div>
+                @endif
                 @endauth
-               @if (count($themes) > 0) 
-                <h3>Созданные темы</h3>
+                <div id="user-activity-info">
+                @if (count($themes) > 0)
+                <h3>Созданные темы: </h3>
                 @foreach ($themes as $theme)
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -45,6 +46,23 @@
                 @endforeach
                 {{ $themes->links() }}
                 @endif
+                @if (count($comments) > 0) 
+                <h3>Последние комментарии: </h3>
+                @foreach ($comments as $comment)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="level">
+                                <span>{{ $comment->created_at }}</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            {{ $comment->body }} в теме <a href="{{route('theme',[$comment->theme->channel->name, $comment->theme->id])}}">{{$comment->theme->name}}</a>
+                        </div>
+                    </div>
+                @endforeach
+                @endif
+                <div id="user-activity-info">
             </div>
         </div>
     </div>

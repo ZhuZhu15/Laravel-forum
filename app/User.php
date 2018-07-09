@@ -29,6 +29,12 @@ class User extends Authenticatable
     {
       return $this->HasMany('App\Comment');
     }
+    public function comments_to_user() {
+        return $this->hasMany('App\Message', 'user_id_to', 'id');
+    }
+    public function comments_from_user() {
+        return $this->hasMany('App\Message', 'user_id_from', 'id');
+    }
     
 
 }
