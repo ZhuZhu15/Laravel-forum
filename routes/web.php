@@ -1,6 +1,6 @@
 <?php
-use app\Theme;
-use app\Comment;
+use App\Theme;
+use App\Comment;
 use App\User;
 use app\Message;
 use Illuminate\Support\Facades\Storage;
@@ -39,8 +39,17 @@ Route::get('/test', function(){
        echo "to " . $message->user_comment_to->name . "<br/>";
    }
 });
+Route::get('/test2', function(){
+    $themes = Theme::all();
+    foreach ($themes as $theme) {
+        echo $theme->user->id;
+      }
+ });
 Route::post('profiles/{user}/avatar', 'UserAvatarController@avatar')->name('avatar')->middleware('auth');
 Route::post('/channels/{channel}/{theme}/createcomment', 'CommentsController@store')->name('create-comment')->middleware('auth');
+Route::post('comment/{comment}', 'CommentsController@delete')->name('delete-comment')->middleware('auth');
+Route::post('theme/{theme}', 'ThemesController@delete')->name('delete-theme')->middleware('auth');
+
 
 Auth::routes();
 

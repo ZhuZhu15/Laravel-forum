@@ -35,4 +35,11 @@ class ThemesController extends Controller
          'theme'=> $theme,
          'comments' => $comments,]);
     }
+    public function delete(Theme $theme)
+    {
+       $this->authorize('update', $theme);
+       $theme->comments()->delete();
+       $theme->delete();
+       return back();  
+    }    
 }

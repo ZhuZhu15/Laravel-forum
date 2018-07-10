@@ -22,10 +22,17 @@
                     <img src="../../storage/{{$comment->owner->img}}" style="max-width: 35px;"/> 
                     <a href="{{route('profile', $comment->owner->name)}}"><b>{{$comment->owner->name}}</b></a> написал:<br/>
                     {{$comment->body}}<br/>
+                @can('update', $comment)
+                <form method="POST" action="{{route('delete-comment', $comment->id)}}">
+                {{ csrf_field() }}
+                <!--{{ method_field('DELETE') }}-->
+                <button type="submit" class="btn btn-danger btn-xs">Удалить</button>
+                </form>
+                @endcan
                     @endforeach
                    {{ $comments->links() }}
                 @else комментариев пока нет
-                @endif   
+                @endif  
                 </div>
             </div>
             

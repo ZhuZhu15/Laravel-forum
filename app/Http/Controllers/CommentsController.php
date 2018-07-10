@@ -20,6 +20,12 @@ class CommentsController extends Controller
             'user_id' => auth()->id(),
         ]);
         return back()->withInput();
-        
     }
+    public function delete(Comment $comment)
+    {
+        $this->authorize('update', $comment);
+        $comment->delete();
+        return back();
+        
+    }    
 }

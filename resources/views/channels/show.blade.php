@@ -25,6 +25,13 @@
                     @endif
                    @foreach ($themes as $theme) 
                     <a href="{{route('theme',[$channel->name, $theme->id])}}">{{$theme->name}}</a> <br>
+                    @can('update', $theme)
+                <form method="POST" action="{{route('delete-theme', $theme->id)}}">
+                {{ csrf_field() }}
+                <!--{{ method_field('DELETE') }}-->
+                <button type="submit" class="btn btn-danger btn-xs">Удалить</button>
+                </form>
+                @endcan
                      @endforeach
                    
                 </div>
