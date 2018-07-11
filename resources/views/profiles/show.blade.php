@@ -22,6 +22,30 @@
                     <button type="submit" class="btn btn-danger">Отправить</button>
                     </form>
                 </div>
+                <br/>
+                <a href="{{route('read-message',[auth()->user()->name])}}" class="btn btn-success">Мои сообщения</a>
+                @endif
+                @if (auth()->user()->id != $profileUser->id)
+                <button class="btn btn-dark message-button" style="margin-top: 10px">Написать {{$profileUser->name}} сообщение</button> 
+                <div class="send-message" style="display:none">
+                <form action="{{route('send-message', $profileUser->id)}}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="row">
+                    <div class="form-group col-sm-6">
+                    <label for="usr">Article:</label>
+                    <input type="text" class="form-control" id="article" name="article">
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="form-group col-sm-6">
+                    <label for="pwd">Message:</label>
+                    <textarea type="text" class="form-control" id="body" name="body"></textarea>
+                    </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Отправить</button>
+                    </div>
+                </form>
+                <button class="btn-dark message-button" style="margin-top: 10px; display:none">Отмена</button>
                 </div>
                 @endif
                 @endauth
@@ -71,6 +95,11 @@ $(document).ready(function(){
     $(".avatar-button").click(function(){
         $(".avatar-button").hide();
         $(".avatar-change").show();
+    });
+
+    $(".message-button").click(function(){
+        $(".message-button").toggle();
+        $(".send-message").toggle();
     });
 });
 </script>

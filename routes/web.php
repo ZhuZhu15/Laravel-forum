@@ -42,13 +42,42 @@ Route::get('/test', function(){
 Route::get('/test2', function(){
     $themes = Theme::all();
     foreach ($themes as $theme) {
-        echo $theme->user->id;
+        echo $theme->channel->id;
       }
+    $comments = Comment::all();
+    foreach ($comments as $comment) {
+        echo $comment->owner->name;
+      } 
  });
 Route::post('profiles/{user}/avatar', 'UserAvatarController@avatar')->name('avatar')->middleware('auth');
 Route::post('/channels/{channel}/{theme}/createcomment', 'CommentsController@store')->name('create-comment')->middleware('auth');
 Route::post('comment/{comment}', 'CommentsController@delete')->name('delete-comment')->middleware('auth');
 Route::post('theme/{theme}', 'ThemesController@delete')->name('delete-theme')->middleware('auth');
+Route::post('message/{user}', 'MessagesController@store')->name('send-message')->middleware('auth');
+Route::get('profiles/{user}/readmessage', function(User $user) {
+    $messages_from = $user->messages_from_user;
+    $messages_to = $user->messages_to_user;
+    $uniq_message = array();
+    foreach ($messages_from as $message)
+    {
+        $name = $message->user_comment_to->name;
+        if (!in_array($name, $uniq_message)) {
+            $uniq_message[] = $name;
+            echo $name . "<br>";
+        }
+    }
+    foreach ($messages_to as $message)
+    {
+        $name = $message->user_comment_from->name;
+        if (!in_array($name, $uniq_message)) {
+            $uniq_message[] = $name;
+            echo $name . "<br>";
+        }
+    }
+
+    
+
+})->name('read-message')->middleware('auth');
 
 
 Auth::routes();

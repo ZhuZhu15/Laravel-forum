@@ -33,7 +33,7 @@ class ChannelsController extends Controller
     }
     public function show(Channel $channel)
     {
-        $themes = $channel->themes;
+        $themes = $channel->themes()->orderBy('updated_at','desc')->get();
         return view('channels.show', ['themes' => $themes, 'channel' => $channel]);
     }
 } 

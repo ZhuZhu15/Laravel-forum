@@ -19,6 +19,7 @@ class CommentsController extends Controller
             'theme_id' => $theme->id,
             'user_id' => auth()->id(),
         ]);
+        $theme->touch();
         return back()->withInput();
     }
     public function delete(Comment $comment)

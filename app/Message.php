@@ -12,4 +12,5 @@ class Message extends Model
     public function user_comment_from() {
         return $this->belongsTo('App\User', 'user_id_from', 'id');
     }
+    protected $guarded = [];
 }

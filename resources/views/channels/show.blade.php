@@ -24,7 +24,8 @@
                         </div>
                     @endif
                    @foreach ($themes as $theme) 
-                    <a href="{{route('theme',[$channel->name, $theme->id])}}">{{$theme->name}}</a> <br>
+                    <a href="{{route('theme',[$channel->name, $theme->id])}}">{{$theme->name}}</a>
+                    {{$theme->updated_at}} <br>
                     @can('update', $theme)
                 <form method="POST" action="{{route('delete-theme', $theme->id)}}">
                 {{ csrf_field() }}
