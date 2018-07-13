@@ -4,6 +4,7 @@ use App\Comment;
 use App\User;
 use app\Message;
 use Illuminate\Support\Facades\Storage;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('channels/create', 'ChannelsController@create')->middleware('auth');
 Route::post('channels', 'ChannelsController@store')->middleware('auth');
 Route::get('channels/{channel}', 'ChannelsController@show')->name('channel');
@@ -54,31 +55,15 @@ Route::post('/channels/{channel}/{theme}/createcomment', 'CommentsController@sto
 Route::post('comment/{comment}', 'CommentsController@delete')->name('delete-comment')->middleware('auth');
 Route::post('theme/{theme}', 'ThemesController@delete')->name('delete-theme')->middleware('auth');
 Route::post('message/{user}', 'MessagesController@store')->name('send-message')->middleware('auth');
-Route::get('profiles/{user}/readmessage', function(User $user) {
-    $messages_from = $user->messages_from_user;
-    $messages_to = $user->messages_to_user;
-    $uniq_message = array();
-    foreach ($messages_from as $message)
+Route::get('profiles/{user}/readmessage', 'MessagesController@showDialog')->name('read-message')->middleware('auth');
+Route::get('profiles/{user}/readmessage/{with_user}', "MessagesController@showCurrent")->name('current-message')->middleware('checkuser');
+Route::get('/test2', function(){
+    $str = "Hello world!";
+    $str = str_split($str);
+    for($i=count($str)-1; $i>=0; $i--)
     {
-        $name = $message->user_comment_to->name;
-        if (!in_array($name, $uniq_message)) {
-            $uniq_message[] = $name;
-            echo $name . "<br>";
-        }
+        echo $str[$i];
     }
-    foreach ($messages_to as $message)
-    {
-        $name = $message->user_comment_from->name;
-        if (!in_array($name, $uniq_message)) {
-            $uniq_message[] = $name;
-            echo $name . "<br>";
-        }
-    }
-
-    
-
-})->name('read-message')->middleware('auth');
-
-
+  });
 Auth::routes();
 

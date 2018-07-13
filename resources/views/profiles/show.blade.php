@@ -46,6 +46,7 @@
                     </div>
                 </form>
                 <button class="btn-dark message-button" style="margin-top: 10px; display:none">Отмена</button>
+                <a href="{{route('current-message', [auth()->user()->name, $profileUser->name])}}" class="btn btn-dark" style="margin-top: 10px;">Перейти к истории сообщений</a>
                 </div>
                 @endif
                 @endauth
