@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         $channels = Channel::all();
-        \View::share('channels', $channels);
+       \View::share('channels', $channels);
         $themes = Theme::all();
         \View::share('themes', $themes);
     }
