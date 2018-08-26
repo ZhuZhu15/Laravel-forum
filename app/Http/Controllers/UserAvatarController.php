@@ -19,10 +19,10 @@ class UserAvatarController extends Controller
       'avatar' => ['required', 'image']
     ]);
     if(isset($user->img)){
-      Storage::delete('public/'.$user->img);
+      Storage::delete('public/avatars/'.$user->img);
     }
-    $img = $request->file('avatar')->store('public');
-    $img = str_replace('public/',"",$img);
+    $img = $request->file('avatar')->store('public/avatars');
+    $img = str_replace('public/avatars/',"",$img);
     $avatar = User::where('id', $user->id)
         ->update(['img' => $img]);
     return back()->withInput();

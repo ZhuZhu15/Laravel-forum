@@ -9,7 +9,8 @@
                         {{ $profileUser->name }}
                         <small>Профиль был создан {{ $profileUser->created_at->format('d-m-Y') }} в {{ $profileUser->created_at->format('H:i:s') }}</small>
                     </h1>
-                   <img src="../storage/{{$profileUser->img}}"/>
+                   <img src="{{Storage::url('public/avatars/').$profileUser->img}}"/>
+
                    <br/>
                    @auth
                    @if (auth()->user()->id == $profileUser->id)
