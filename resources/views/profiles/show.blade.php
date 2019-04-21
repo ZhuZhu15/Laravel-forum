@@ -9,7 +9,7 @@
                         {{ $profileUser->name }}
                         <small>Профиль был создан {{ $profileUser->created_at->format('d-m-Y') }} в {{ $profileUser->created_at->format('H:i:s') }}</small>
                     </h1>
-                   <img src="{{Storage::url('public/avatars/').$profileUser->img}}"/>
+                   <img src="{{Storage::url('app/public/avatars/').$profileUser->img}}" style="max-width: 200px;"/>
 
                    <br/>
                    @auth
