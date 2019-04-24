@@ -17,7 +17,9 @@
                       <a href="channels/{{$channel->name}}"><h2>{{ $channel->name }}</h2></a>
                       <p>{{ $channel->body }}</p>
                     @endforeach
-                   
+                        <div>
+                            <a href="channels/create" class="btn btn-success">Создать рубрику</a>
+                        </div>
                 </div>
             </div>
         </div>

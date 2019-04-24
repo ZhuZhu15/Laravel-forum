@@ -19,7 +19,7 @@
                 <div class="card-body">
                 @if (count($comments)>0)
                     @foreach ($comments as $comment)
-                    <img src="../../storage/{{$comment->owner->img}}" style="max-width: 35px;"/> 
+                    <img src="{{Storage::url('app/public/avatars/').$comment->owner->img}}" style="max-width: 50px;"/>
                     <a href="{{route('profile', $comment->owner->name)}}"><b>{{$comment->owner->name}}</b></a> написал:<br/>
                     {{$comment->body}}<br/>
                 @can('update', $comment)

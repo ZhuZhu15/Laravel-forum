@@ -29,7 +29,7 @@ class ChannelsController extends Controller
             'body' => request('body')
         ]);
 
-        return view('home');
+        return redirect('');
     }
     public function show(Channel $channel)
     {
